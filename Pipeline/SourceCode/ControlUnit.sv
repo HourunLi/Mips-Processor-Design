@@ -71,17 +71,17 @@ typedef struct packed{
     read_type_t          readType;   // read type such as byeteSigned, Half_word_signed, for lw, lb...
     logic                MemWrite;   // result whether needs to be written into data memory
     write_type_t         writeType;  // read type such as byeteS, Half_word, for sb, sw...
-    alu_operation_t      ALUOPCode;
-    mdu_operation_t      DMUOPCode;
-    logic                mduStart;
-    memery_to_reg_t      MemtoReg;
-    reg_id_t             RegDst;
-    reg_id_t             Read1ID;
-    reg_id_t             Read2ID;
+    alu_operation_t      ALUOPCode;  //alu operation code
+    mdu_operation_t      DMUOPCode;  //dmu operation code
+    logic                mduStart;   //dmu start working sign
+    memery_to_reg_t      MemtoReg;   // the data type to be written into register
+    reg_id_t             RegDst;     // register destionation
+    reg_id_t             Read1ID;    
+    reg_id_t             Read2ID;    
     ALU_DMU_source_t     ALUDMUOperand1;
     ALU_DMU_source_t     ALUDMUOperand2;
-    jump_condition_t     jmpCondition;
-    jump_dest_source_t   jmpDest;
+    jump_condition_t     jmpCondition; //jump condition, such as beq, bne and so on
+    jump_dest_source_t   jmpDest;      //the source of jump addr, such as from register or absolute addr...
 }control_signals_t;
 
 `define BUBBLE_SIGNALS  '{                 \
@@ -289,6 +289,7 @@ module ControlUnit(
             end
             MULT, MULTU, DIV, DIVU :begin
                 //Signals.RegWrite = `DIS_ABLE;
+                Signals.RegDst = REG_ZERO;
                 Signals.mduStart = `ENABLE;
                 casez(instruction.inst_code) 
                     MULT:  Signals.DMUOPCode = MDU_START_SIGNED_MUL;

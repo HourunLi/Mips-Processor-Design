@@ -60,10 +60,10 @@ module InstructionMemory(
 );
     int_t memory[`IM_WORDS-1:0];
     initial begin
-        $readmemh("E:\\VivadoProject\\Mips\\TestCode\\HexadecimalCode\\0dE.asm.txt", memory);
+//        $readmemh("E:\\VivadoProject\\Mips\\TestCode\\HexadecimalCode\\0dE.asm.txt", memory);
 //        $readmemh("E:\\VivadoProject\\Mips\\TestCode\\HexadecimalCode\\0eC.asm.txt", memory);
 //        $readmemh("E:\\VivadoProject\\Mips\\TestCode\\HexadecimalCode\\0eL.asm.txt", memory);
-//        $readmemh("E:\\VivadoProject\\Mips\\TestCode\\HexadecimalCode\\0hJ.asm.txt", memory);
+        $readmemh("E:\\VivadoProject\\Mips\\TestCode\\HexadecimalCode\\0hJ.asm.txt", memory);
 //        $readmemh("E:\\VivadoProject\\Mips\\TestCode\\HexadecimalCode\\0vM.asm.txt", memory);
 //        $readmemh("E:\\VivadoProject\\Mips\\TestCode\\HexadecimalCode\\02H.asm.txt", memory);
 //        $readmemh("E:\\VivadoProject\\Mips\\TestCode\\HexadecimalCode\\08H.asm.txt", memory);

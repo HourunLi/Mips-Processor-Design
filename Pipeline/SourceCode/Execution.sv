@@ -124,7 +124,9 @@ module Execution(
         .busy(mduBusy),
         .dataRead(MDUResult)
     );
-    assign stall = hazard[0] || hazard[1] || mduBusy;
+    logic readSign;
+    assign readSign =  pipelineDecodeRes.signals.DMUOPCode == MDU_READ_HI || pipelineDecodeRes.signals.DMUOPCode == MDU_READ_LO;
+    assign stall = hazard[0] || hazard[1] || (mduBusy&&(pipelineDecodeRes.signals.mduStart||readSign));
     assign stallFromEx = stall;
     
     always_comb begin
